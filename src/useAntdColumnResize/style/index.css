@@ -13,7 +13,7 @@
   top: 0;
   bottom: 0;
   left: 0;
-  right: 0;
+  right: 1px;
   background-clip: padding-box;
 }
 
@@ -21,9 +21,9 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  right: -4px;
+  right: -6px;
   z-index: 1;
-  width: 8px;
+  width: 12px;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -33,14 +33,17 @@
     z-index: 5;
     cursor: col-resize;
     & .resizable-line {
-      background: var(--line-color, #b6b7b9);
       pointer-events: none;
+      width: 1px;
+      /* 也可以通过元素向上查找table的高度 */
+      height: 1000vh;
+      background: #dcdfe6;
     }
   }
 }
 
 .resizable-line {
-  width: 4px;
+  width: 1px;
   height: 100%;
   border-radius: 8px;
   transition: background-color 0.2s;
