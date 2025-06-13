@@ -7,11 +7,30 @@
     "jsx": "react",
     "baseUrl": "./",
     "paths": {
-      "@@/*": [".dumi/tmp/*"],
-      "react-antd-column-resize": ["src"],
-      "react-antd-column-resize/*": ["src/*", "*"]
+      "@@/*": [
+        ".dumi/tmp/*"
+      ],
+      "react-antd-column-resize": [
+        "src"
+      ],
+      "react-antd-column-resize/*": [
+        "src/*",
+        "*"
+      ]
     }
   },
-  "include": [".dumi/**/*", ".dumirc.ts", "src/**/*"],
-  "lib": ["es2015", "es2017", "ES2019", "dom"]
+  "include": [
+    ".dumirc.ts",
+    "src/**/*"
+  ],
+  "exclude": [
+    "src/utils/isDeepEqualReact/index.ts",
+    "src/useAntdColumnResize/demo/*"
+  ],
+  "lib": [
+    "es2015",
+    "es2017",
+    "ES2019",
+    "dom"
+  ]
 }

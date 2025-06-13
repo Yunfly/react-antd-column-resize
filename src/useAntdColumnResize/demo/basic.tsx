@@ -8,26 +8,23 @@ const App = () => {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      width: 200,
       align: 'center',
     },
     {
       title: 'Age',
       dataIndex: 'age',
       key: 'age',
-      width: 120,
     },
     {
       title: 'Address',
       dataIndex: 'address',
       key: 'address',
-      width: 300,
     },
     {
       title: 'phone',
       dataIndex: 'phone',
       key: 'phone',
-      //fixed: 'right',
+      fixed: 'right',
     },
   ];
 
