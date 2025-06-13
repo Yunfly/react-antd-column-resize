@@ -2,7 +2,7 @@ import type { InputRef } from 'antd';
 import { Button, Form, Input, Popconfirm, Table } from 'antd';
 import type { FormInstance } from 'antd/es/form';
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { useAntdColumnResize } from 'react-antd-column-resize';
+import { useAntdColumnResize } from 'antd-table-column-resize';
 const EditableContext = React.createContext<FormInstance<any> | null>(null);
 
 interface Item {

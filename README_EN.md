@@ -4,7 +4,8 @@
 
 ## Introduction
 
-react-antd-column-resize is a React component for resizing the width of columns in antd tables using react hooks. It supports antd4, antd5, ant-design/pro-components, and any other table components built with antd. The core hook `useAntdColumnResize` allows you to customize the minimum width, maximum width, and default width for column resizing with ease.
+antd-table-column-resize is a React component for resizing the width of columns in antd tables using react hooks. Implemented by referencing [react-antd-column-resize](https://varown.github.io/react-antd-column-resize/components/use-antd-column-resize)
+It supports antd4, antd5, ant-design/pro-components, and any other table components built with antd. The core hook `useAntdColumnResize` allows you to customize the minimum width, maximum width, and default width for column resizing with ease.
 
 ## Install
 

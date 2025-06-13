@@ -1,12 +1,10 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import type { ResizeCallbackData } from 'react-resizable';
-import useMergedState from './hooks/useMergedState';
-import { ResizableHeaderCellProps } from './types';
 import { Resizable } from 'react-resizable';
 import 'react-resizable/css/styles.css';
 import './style/global.css';
 import './style/index.css';
-
+import { ResizableHeaderCellProps } from './types';
 
 const ResizableHeaderCell = (props: ResizableHeaderCellProps): JSX.Element => {
   const {
@@ -20,38 +18,23 @@ const ResizableHeaderCell = (props: ResizableHeaderCellProps): JSX.Element => {
     rowSpan,
     style,
     colSpan,
-    title,
     scope,
     className,
     ...restProps
   } = props as ResizableHeaderCellProps;
 
-  // 先使用useMergedState
-  const [interWidth, setInterWidth] = useMergedState(width);
+  const [interWidth, setInterWidth] = useState(0);
+  const [startWidth, setStartWidth] = useState(width);
   const [isResizing, setIsResizing] = useState(false);
+
+  const thRef = useRef<HTMLTableHeaderCellElement>(null);
 
   useEffect(() => {
     setInterWidth(width);
+    if (!width && thRef.current) {
+      setInterWidth(thRef.current.clientWidth - 33);
+    }
   }, [width]);
-
-  if (!interWidth || Number.isNaN(Number(width))) {
-    delete style?.width;
-    return (
-      <th
-        {...restProps}
-        onClick={onClick}
-        rowSpan={rowSpan}
-        colSpan={colSpan}
-        className={className}
-        style={{
-          ...style,
-          minWidth,
-        }}
-      >
-        <span title={title}>{children}</span>
-      </th>
-    );
-  }
 
   const toggleColumnResizeStyles = (active: boolean) => {
     try {
@@ -75,13 +58,15 @@ const ResizableHeaderCell = (props: ResizableHeaderCellProps): JSX.Element => {
     if (viceWidth >= maxWidth) viceWidth = maxWidth;
     if (viceWidth <= minWidth) viceWidth = minWidth;
     return viceWidth;
-  }
+  };
 
   const onResizeStart = (_: any, data: ResizeCallbackData) => {
-    const startWidth = diffWidth(data?.size?.width);
+    // const startWidth = diffWidth(data?.size?.width);
+    const startWidth = diffWidth(data?.node?.parentElement?.clientWidth ?? 0);
     toggleColumnResizeStyles(true);
     setIsResizing(true);
     setInterWidth(startWidth);
+    setStartWidth(startWidth);
   };
 
   const onResize = (_: any, data: ResizeCallbackData) => {
@@ -92,7 +77,7 @@ const ResizableHeaderCell = (props: ResizableHeaderCellProps): JSX.Element => {
   const onResizeStop = () => {
     toggleColumnResizeStyles(false);
     setIsResizing(false);
-    if (interWidth === width) return;
+    if (interWidth === startWidth) return;
     const nowWidth = diffWidth(interWidth);
     nowWidth !== interWidth && setInterWidth(nowWidth);
     onResizeCallback?.(cellKey, nowWidth);
@@ -100,6 +85,7 @@ const ResizableHeaderCell = (props: ResizableHeaderCellProps): JSX.Element => {
 
   return (
     <th
+      ref={thRef}
       scope={scope}
       colSpan={colSpan}
       rowSpan={rowSpan}
@@ -117,11 +103,11 @@ const ResizableHeaderCell = (props: ResizableHeaderCellProps): JSX.Element => {
         minConstraints={[minWidth, 50]}
         maxConstraints={[maxWidth, 50]}
         handle={
-          <div className="resizable-handler" >
+          <div className="resizable-handler">
             <div className="resizable-line" />
           </div>
         }
-        draggableOpts={{ enableUserSelectHack: false }}
+        // draggableOpts={{ enableUserSelectHack: false }}
         onResize={onResize}
         onResizeStart={onResizeStart}
         onResizeStop={onResizeStop}
@@ -129,8 +115,8 @@ const ResizableHeaderCell = (props: ResizableHeaderCellProps): JSX.Element => {
         <div
           style={{
             height: '100%',
-            width: isResizing ? interWidth : '100%',
-            minWidth: `${interWidth} !important`
+            width: isResizing ? interWidth : undefined,
+            minWidth: `${interWidth} !important`,
           }}
         ></div>
       </Resizable>
@@ -142,5 +128,3 @@ const ResizableHeaderCell = (props: ResizableHeaderCellProps): JSX.Element => {
 };
 
 export default memo(ResizableHeaderCell);
-
-

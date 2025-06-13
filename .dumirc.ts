@@ -1,5 +1,5 @@
 import { defineConfig } from 'dumi';
-const repo = 'react-antd-column-resize'; // 项目名
+const repo = 'antd-table-column-resize'; // 项目名
 export default defineConfig({
   outputPath: 'docs-dist',
   themeConfig: {

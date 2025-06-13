@@ -4,7 +4,8 @@
 
 ## 简介
 
-react-antd-column-resize 是一个基于 react hooks 开发的 antd 表格(table)列宽拖动组件，
+antd-table-column-resize 是一个基于 react hooks 开发的 antd 表格(table)列宽拖动组件，
+实现上借鉴 [react-antd-column-resize](https://varown.github.io/react-antd-column-resize/components/use-antd-column-resize)
 支持 antd4、antd5 和 ant-design/pro-components 以及所有基于 antd 开发的 table 组件。
 其核心 hooks`useAntdColumnResize`，可以自定义拖动的最小宽度、最大宽度和默认宽度方便快捷。
 已经使用 antd4、antd5 官网中的 table 示例例进行测试，可以正常使用。
@@ -53,9 +54,6 @@ const App = () => {
       dataIndex: 'phone',
       key: 'phone',
       fixed: 'right',
-      //width:"必须有一项不设置宽度，不然会造成拖动异常"
-      //width:"必须有一项不设置宽度，不然会造成拖动异常"
-      //width:"必须有一项不设置宽度，不然会造成拖动异常"
     },
   ];
 
@@ -127,10 +125,8 @@ useAntdColumnResize(setup: () => resizeDataType<Column>, dependencies: any[])
 ## 注意事项(请一定阅读，请一定阅读，请一定阅读，尤其是第二项)
 
 1. `columns` 设置每项 `width` 时，默认该项是可拖动项,并且请确保含有唯一标识(`dataIndex或者key`)。
-2. `columns` 至少需要一项不设置 `width`，否则会拖动异常，`minWidth` 默认是未设置项宽度的最小宽度。
-   原因：当 `columns` 每项设置的宽度之和小于表格宽度时，会造成拖动异常，所以需要至少一项不设置宽度，让其自适应。
-3. `minWidth`、`maxWidth` 代表可拖动的距离，建议 `minWidth`等于 `columns` 设置的最小宽度项，最大宽度同理应大于`columns` 设置的最大宽度项。
-4. 请不要欺骗`useAntdColumnResize`，`dependencies` 依赖项请按需添加，否则会造成无限循环。
+2. `minWidth`、`maxWidth` 代表可拖动的距离，建议 `minWidth`等于 `columns` 设置的最小宽度项，最大宽度同理应大于`columns` 设置的最大宽度项。
+3. 请不要欺骗`useAntdColumnResize`，`dependencies` 依赖项请按需添加，否则会造成无限循环。
 
 ### 贡献
 
@@ -141,3 +137,7 @@ useAntdColumnResize(setup: () => resizeDataType<Column>, dependencies: any[])
 ## Stargazers over time
 
 [![Stargazers over time](https://starchart.cc/varown/react-antd-column-resize.svg)](https://starchart.cc/varown/react-antd-column-resize)
+
+## 已有项目快速支持
+
+通过 pnpm patch 为增加 pro-table 拖拽功能 @see example/ant-design

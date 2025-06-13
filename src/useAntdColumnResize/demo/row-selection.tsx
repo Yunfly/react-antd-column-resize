@@ -1,7 +1,7 @@
 import { Divider, Radio, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import React, { useState } from 'react';
-import { useAntdColumnResize } from 'react-antd-column-resize';
+import { useAntdColumnResize } from 'antd-table-column-resize';
 interface DataType {
   key: React.Key;
   name: string;

@@ -1,6 +1,6 @@
 import { Button, Divider, Space, Table } from 'antd';
 import React, { useState } from 'react';
-import { useAntdColumnResize } from 'react-antd-column-resize';
+import { useAntdColumnResize } from 'antd-table-column-resize';
 
 const App = () => {
   const [columns, setColumns] = useState<any[]>([
@@ -8,20 +8,20 @@ const App = () => {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      width: 200,
+      // width: 200,
       align: 'center',
     },
     {
       title: 'Age',
       dataIndex: 'age',
       key: 'age',
-      width: 100,
+      // width: 100,
     },
     {
       title: 'Address',
       dataIndex: 'address',
       key: 'address',
-      width: 300,
+      // width: 300,
     },
     {
       title: 'phone',

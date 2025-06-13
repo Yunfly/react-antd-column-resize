@@ -1,10 +1,9 @@
 {
-  "name": "react-antd-column-resize",
+  "name": "antd-table-column-resize",
   "version": "1.0.3",
-  "homepage": "https://varown.github.io/react-antd-column-resize/components/use-antd-column-resize",
   "repository": {
     "type": "git",
-    "url": "https://github.com/varown/react-antd-column-resize.git"
+    "url": "https://github.com/Yunfly/antd-table-column-resize.git"
   },
   "license": "MIT",
   "module": "dist/index.js",
@@ -82,8 +81,8 @@
   },
   "authors": [
     {
-      "name": "varown",
-      "email": "varownm@gmail.com"
+      "name": "yunfly",
+      "email": "yunfly.qin@gmail.com"
     }
   ]
 }

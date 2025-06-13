@@ -1,6 +1,6 @@
 import { Table } from 'antd';
 import React from 'react';
-import { useAntdColumnResize } from 'react-antd-column-resize';
+import { useAntdColumnResize } from 'antd-table-column-resize';
 
 type dataType = {
   key: number;

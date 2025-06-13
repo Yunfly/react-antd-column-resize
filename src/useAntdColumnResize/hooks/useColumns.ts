@@ -2,7 +2,7 @@ import { useRef, useMemo, useState, useCallback } from 'react';
 import { Column, resizeDataType } from '../types';
 import { INTERNAL_KEY } from '../constant';
 
-const useColumns = ({ columns, minWidth = 120, maxWidth = 2000, }: resizeDataType<Column>) => {
+const useColumns = ({ columns, minWidth = 30, maxWidth = 2000, }: resizeDataType<Column>) => {
 
   const columnMap = useRef(new Map<string | number, number>()).current;
 

@@ -8,8 +8,8 @@
     "baseUrl": "./",
     "paths": {
       "@@/*": [".dumi/tmp/*"],
-      "react-antd-column-resize": ["src"],
-      "react-antd-column-resize/*": ["src/*", "*"]
+      "antd-table-column-resize": ["src"],
+      "antd-table-column-resize/*": ["src/*", "*"]
     }
   },
   "include": [".dumi/**/*", ".dumirc.ts", "src/**/*"],

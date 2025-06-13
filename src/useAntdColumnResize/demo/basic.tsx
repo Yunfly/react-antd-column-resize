@@ -1,6 +1,6 @@
 import { Button, Divider, Table } from 'antd';
 import React from 'react';
-import { useAntdColumnResize } from 'react-antd-column-resize';
+import { useAntdColumnResize } from 'antd-table-column-resize';
 
 const App = () => {
   const columns = [
@@ -27,7 +27,7 @@ const App = () => {
       title: 'phone',
       dataIndex: 'phone',
       key: 'phone',
-      //fixed: 'right',
+      fixed: 'right',
     },
   ];
 

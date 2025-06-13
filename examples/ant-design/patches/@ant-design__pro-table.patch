@@ -1,0 +1,64 @@
+diff --git a/es/Table.js b/es/Table.js
+index 632422ad7a1a3e207b27ea1afdf8af3266f23c80..5a0ca415957be325049e1933e74a44b65ba21293 100644
+--- a/es/Table.js
++++ b/es/Table.js
+@@ -7,7 +7,8 @@ import _toConsumableArray from "@babel/runtime/helpers/esm/toConsumableArray";
+ import _objectSpread from "@babel/runtime/helpers/esm/objectSpread2";
+ import _objectWithoutProperties from "@babel/runtime/helpers/esm/objectWithoutProperties";
+ var _excluded = ["rowKey", "tableClassName", "defaultClassName", "action", "tableColumn", "type", "pagination", "rowSelection", "size", "defaultSize", "tableStyle", "toolbarDom", "hideToolbar", "searchNode", "style", "cardProps", "alertDom", "name", "onSortChange", "onFilterChange", "options", "isLightFilter", "className", "cardBordered", "editableUtils", "getRowKey"],
+-  _excluded2 = ["cardBordered", "request", "className", "params", "defaultData", "headerTitle", "postData", "ghost", "pagination", "actionRef", "columns", "toolBarRender", "optionsRender", "onLoad", "onRequestError", "style", "cardProps", "tableStyle", "tableClassName", "columnsStateMap", "onColumnsStateChange", "options", "search", "name", "onLoadingChange", "rowSelection", "beforeSearchSubmit", "tableAlertRender", "defaultClassName", "formRef", "type", "columnEmptyText", "toolbar", "rowKey", "manualRequest", "polling", "tooltip", "revalidateOnFocus", "searchFormRender"];
++  _excluded2 = ["cardBordered", "request", "className", "params", "defaultData", "headerTitle", "postData", "ghost", "pagination", "actionRef", "columns", "toolBarRender", "optionsRender", "onLoad", "onRequestError", "style", "cardProps", "tableStyle", "tableClassName", "columnsStateMap", "onColumnsStateChange", "options", "search", "name", "onLoadingChange", "rowSelection", "beforeSearchSubmit", "tableAlertRender", "defaultClassName", "formRef", "type", "columnEmptyText", "toolbar", "rowKey", "manualRequest", "polling", "tooltip", "revalidateOnFocus", "searchFormRender"],
++  _excluded3 = ["columns", "minWidth"];
+ // 兼容代码-----------
+ import "antd/es/table/style";
+ import "antd/es/typography/style";
+@@ -31,6 +32,7 @@ import useFetchData from "./useFetchData";
+ import { genColumnKey, isBordered, mergePagination, parseDefaultColumnConfig, useActionType } from "./utils";
+ import { columnSort } from "./utils/columnSort";
+ import { genProColumnToColumn } from "./utils/genProColumnToColumn";
++import { useAntdColumnResize } from 'antd-table-column-resize';
+ import { jsx as _jsx } from "react/jsx-runtime";
+ import { createElement as _createElement } from "react";
+ import { Fragment as _Fragment } from "react/jsx-runtime";
+@@ -829,4 +831,26 @@ var ProviderTableContainer = function ProviderTableContainer(props) {
+   });
+ };
+ ProviderTableContainer.Summary = Table.Summary;
+-export default ProviderTableContainer;
+\ No newline at end of file
++var ResizeProTable = function ResizeProTable(_ref7) {
++  var columns = _ref7.columns,
++    minWidth = _ref7.minWidth,
++    props = _objectWithoutProperties(_ref7, _excluded3);
++  var _useAntdColumnResize = useAntdColumnResize(function () {
++      return {
++        columns: columns,
++        minWidth: minWidth || 30
++      };
++    }, [columns]),
++    resizableColumns = _useAntdColumnResize.resizableColumns,
++    components = _useAntdColumnResize.components,
++    tableWidth = _useAntdColumnResize.tableWidth;
++  return /*#__PURE__*/_jsx(ProviderTableContainer, _objectSpread({
++    components: components,
++    columns: resizableColumns,
++    scroll: {
++      x: tableWidth
++    }
++  }, props));
++};
++ResizeProTable.Summary = Table.Summary;
++export default ResizeProTable;
+\ No newline at end of file
+diff --git a/package.json b/package.json
+index 48854a6dd06aa385cc7385485a8a19724ab4cc7e..0afebc81bcdaa487289c86e740e4bfe683381c4d 100644
+--- a/package.json
++++ b/package.json
+@@ -51,6 +51,7 @@
+     "lodash": "^4.17.21",
+     "lodash-es": "^4.17.21",
+     "rc-resize-observer": "^1.0.0",
++    "antd-table-column-resize": "^1.0.3",
+     "rc-util": "^5.0.1"
+   },
+   "devDependencies": {

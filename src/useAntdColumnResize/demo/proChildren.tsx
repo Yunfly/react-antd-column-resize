@@ -1,6 +1,6 @@
 import { ProTable } from '@ant-design/pro-components';
 import React from 'react';
-import { useAntdColumnResize } from 'react-antd-column-resize';
+import { useAntdColumnResize } from 'antd-table-column-resize';
 
 type dataType = {
   key: number;
